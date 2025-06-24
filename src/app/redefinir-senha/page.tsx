@@ -37,7 +37,7 @@ export default function RedefinirSenhaPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:3001/usuarios?email=${email}`);
+      const res = await fetch(`https://api-kanbanize.onrender.com/usuarios?email=${email}`);
       const data = await res.json();
 
       if (data.length === 0) {
@@ -47,7 +47,7 @@ export default function RedefinirSenhaPage() {
 
       const usuario = data[0];
 
-      const patch = await fetch(`http://localhost:3001/usuarios/${usuario.id}`, {
+      const patch = await fetch(`https://api-kanbanize.onrender.com/usuarios/${usuario.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ senha: novaSenha })
@@ -89,7 +89,7 @@ export default function RedefinirSenhaPage() {
   }
 
   try {
-    const res = await fetch('http://localhost:3001/api/redefinir-senha', {
+    const res = await fetch('https://api-kanbanize.onrender.com/api/redefinir-senha', {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: emailLimpo, novaSenha: senhaLimpa })

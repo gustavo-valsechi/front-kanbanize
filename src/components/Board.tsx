@@ -28,7 +28,7 @@ export const Board: React.FC = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch("http://localhost:3001/task");
+      const res = await fetch("https://api-kanbanize.onrender.com/task");
       if (!res.ok) throw new Error("Erro ao buscar tarefas");
 
       const data = await res.json();
@@ -72,7 +72,7 @@ export const Board: React.FC = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3001/task", {
+      const res = await fetch("https://api-kanbanize.onrender.com/task", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(taskData),
@@ -105,7 +105,7 @@ export const Board: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3001/task/${taskId}`, {
+      const res = await fetch(`https://api-kanbanize.onrender.com/task/${taskId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updateData),
@@ -123,7 +123,7 @@ export const Board: React.FC = () => {
 
   const handleDeleteTask = async (taskId: string) => {
     try {
-      const res = await fetch(`http://localhost:3001/task/${taskId}`, {
+      const res = await fetch(`https://api-kanbanize.onrender.com/task/${taskId}`, {
         method: "DELETE",
       });
 
@@ -147,7 +147,7 @@ export const Board: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3001/task/${updatedTask.id}`, {
+      const res = await fetch(`https://api-kanbanize.onrender.com/task/${updatedTask.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updateData),

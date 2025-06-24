@@ -25,7 +25,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   setLoading(true);
   try {
-    const res = await fetch('http://localhost:3001/api/login', {
+    const res = await fetch('https://api-kanbanize.onrender.com/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email.trim().toLowerCase(), senha: senha.trim() })

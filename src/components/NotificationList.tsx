@@ -20,7 +20,7 @@ const NotificationList: React.FC<Props> = ({ usuarioId }) => {
   useEffect(() => {
     const fetchNotificacoes = async () => {
       try {
-        const res = await fetch(`http://localhost:3001/api/notificacoes/${usuarioId}`)
+        const res = await fetch(`https://api-kanbanize.onrender.com/api/notificacoes/${usuarioId}`)
         const data = await res.json()
         setNotificacoes(data)
       } catch (error) {

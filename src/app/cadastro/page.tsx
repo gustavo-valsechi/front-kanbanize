@@ -45,7 +45,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 
   try {
-    const res = await fetch('http://localhost:3001/api/cadastro', {
+    const res = await fetch('https://api-kanbanize.onrender.com/api/cadastro', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome: trimmedNome, email: trimmedEmail, senha })
