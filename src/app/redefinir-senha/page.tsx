@@ -18,101 +18,49 @@ export default function RedefinirSenhaPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-<<<<<<<< HEAD:src/app/redefinir-senha/page.tsx
     e.preventDefault();
 
-    if (!email || !novaSenha || !confirmarSenha) {
+    const emailLimpo = email.trim().toLowerCase();
+    const senhaLimpa = novaSenha.trim();
+
+    if (!emailLimpo || !senhaLimpa || !confirmarSenha.trim()) {
       setErro('Preencha todos os campos.');
       return;
     }
 
-    if (!senhaForte(novaSenha)) {
+    if (!senhaForte(senhaLimpa)) {
       setErro('A senha deve conter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial.');
       return;
     }
 
-    if (novaSenha !== confirmarSenha) {
+    if (senhaLimpa !== confirmarSenha.trim()) {
       setErro('As senhas não coincidem.');
       return;
     }
 
     try {
-      const res = await fetch(`https://api-kanbanize.onrender.com/usuarios?email=${email}`);
-      const data = await res.json();
-
-      if (data.length === 0) {
-        setErro('E-mail não encontrado.');
-        return;
-      }
-
-      const usuario = data[0];
-
-      const patch = await fetch(`https://api-kanbanize.onrender.com/usuarios/${usuario.id}`, {
+      const res = await fetch('https://api-kanbanize.onrender.com/api/redefinir-senha', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senha: novaSenha })
+        body: JSON.stringify({ email: emailLimpo, novaSenha: senhaLimpa })
       });
 
-      if (patch.ok) {
+      const data = await res.json();
+
+      if (res.ok) {
         setErro('');
         setMensagem('Senha redefinida com sucesso!');
         setEmail('');
         setNovaSenha('');
         setConfirmarSenha('');
       } else {
-        setErro('Erro ao atualizar a senha.');
+        setErro(data.erro || 'Erro ao atualizar a senha.');
       }
     } catch (err) {
-      console.error(err);
+      console.error('Erro detalhado:', err);
       setErro('Erro na comunicação com o servidor.');
     }
   };
-========
-  e.preventDefault();
-
-  const emailLimpo = email.trim().toLowerCase();
-  const senhaLimpa = novaSenha.trim();
-
-  if (!emailLimpo || !senhaLimpa || !confirmarSenha.trim()) {
-    setErro('Preencha todos os campos.');
-    return;
-  }
-
-  if (!senhaForte(senhaLimpa)) {
-    setErro('A senha deve conter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula, número e caractere especial.');
-    return;
-  }
-
-  if (senhaLimpa !== confirmarSenha.trim()) {
-    setErro('As senhas não coincidem.');
-    return;
-  }
-
-  try {
-    const res = await fetch('https://api-kanbanize.onrender.com/api/redefinir-senha', {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: emailLimpo, novaSenha: senhaLimpa })
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      setErro('');
-      setMensagem('Senha redefinida com sucesso!');
-      setEmail('');
-      setNovaSenha('');
-      setConfirmarSenha('');
-    } else {
-      setErro(data.erro || 'Erro ao atualizar a senha.');
-    }
-  } catch (err) {
-    console.error('Erro detalhado:', err);
-    setErro('Erro na comunicação com o servidor.');
-  }
-};
-
->>>>>>>> origin/teste_back:kanbanize_front_end/src/app/redefinir-senha/page.tsx
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
