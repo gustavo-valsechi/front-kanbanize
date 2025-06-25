@@ -1,13 +1,6 @@
 import React from "react";
 import { TaskCard } from "./Taskcard";
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  priority: "baixa" | "média" | "alta" | "urgente";
-}
+import { Task } from "./Board";
 
 interface ColumnProps {
   title: string;
