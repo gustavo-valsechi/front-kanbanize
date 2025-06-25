@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Task } from "./Board";
 
 interface Props {
-  task?: Task;
+  task?: any;
   onClose: () => void;
-  onSave: (task: Task) => void;
+  onSave: (task: any) => void;
 }
 
 const TaskModal: React.FC<Props> = ({ task, onClose, onSave }) => {
-  const [form, setForm] = useState<Task>({
+  const [form, setForm] = useState<any>({
     id: task?.id ?? "",
     title: task?.title ?? "",
     description: task?.description ?? "",

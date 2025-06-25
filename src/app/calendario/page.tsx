@@ -26,7 +26,7 @@ export default function Calendario() {
 
     const getTasksContent = useCallback(async () => {
         const tasks: any = await getTasks({})
-        setTasks(_.map(tasks.content, (data) => ({
+        setTasks(tasks.content?.map((data) => ({
             id: data.id,
             title: data.titulo,
             description: data.descricao,
