@@ -7,7 +7,6 @@ import { ptBR } from 'date-fns/locale'
 import { getTasks, crateTask, updateTask } from '@/api/task'
 import TaskModal from '@/components/TaskModal'
 import moment from 'moment'
-import _ from 'lodash'
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
