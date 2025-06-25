@@ -14,7 +14,7 @@ interface Task {
 export default function TaskManager() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const addTask = (title: string, priority: 'Alta' | 'Média' | 'Baixa', dueDate: string) => {
+  const addTask = (title: string, priority: 'Alta' | 'Média' | 'Baixa') => {
     const novaTarefa: Task = {
       id: tasks.length + 1,
       title,

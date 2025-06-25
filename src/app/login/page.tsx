@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Input from '../../components/Input';
 import FormButton from '../../components/FormButton';
-import ErrorMessage from '../../components/ErrorMessage';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
